@@ -1,6 +1,6 @@
 # AnkiCardCreator
 
-Application helps to create Anki Card, it translate a word from En-Ru and Ru-En, transcription and find images for this word.
+Application helps to create Anki Card, it translate a word from En-Ru and Ru-En, get transcription and find images for this word.
 Anki card must have next fields:
 1. Question
 2. Answer
@@ -16,4 +16,4 @@ The image will be copied into selected directory for anki-content.
 Click right mouse button on the AnkiCardCreator form to open and change settings:
 1. Change Anki card content folder
 2. Change Anki import.txt file folder
-3. Change or add Pixabay Image Searcher Api-Key, wich are using for search and download images.
+3. Change or add Pixabay Image Searcher Api-Key, which are using for search and download images.
