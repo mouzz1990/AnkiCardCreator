@@ -10,6 +10,8 @@ using MetroFramework;
 using MetroFramework.Forms;
 using AnkiCardCreator.Interfaces;
 using System.Xml.Linq;
+using System.IO;
+using System.Diagnostics;
 
 namespace AnkiCardCreator
 {
@@ -65,6 +67,14 @@ namespace AnkiCardCreator
             }
         }
 
+        private string wordToSearch;
+        public string WordToSearch
+        {
+            get { return wordToSearch; }
+            set { wordToSearch = value; }
+        }
+
+
         public void GetTranslation()
         {
             presenter.ShowTranslation();
@@ -102,16 +112,14 @@ namespace AnkiCardCreator
 
         public void ChangeAnkiContentFolder()
         {
-
             FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.SelectedPath = AnkiAppSettings.AnkiContentPath;
+
             DialogResult res = fbd.ShowDialog();
 
             if (res == System.Windows.Forms.DialogResult.OK)
             {
-                XDocument xDoc = XDocument.Load("settings.xml");
-
-                xDoc.Element("SETTINGS").Element("AnkiContentPath").Value = fbd.SelectedPath;
-                xDoc.Save("settings.xml");
+                AnkiAppSettings.SaveContentChanges(fbd.SelectedPath);
             }
             else
             {
@@ -141,6 +149,7 @@ namespace AnkiCardCreator
             GetTranslation();
             panel1.Visible = true;
             AlternativeImageSearch = txbWord.Text;
+            WordToSearch = txbWord.Text;
             DisplayImage();
         }
 
@@ -166,8 +175,11 @@ namespace AnkiCardCreator
 
         private void txbRefresh_Click(object sender, EventArgs e)
         {
-            if (Word != AlternativeImageSearch)
+            if (WordToSearch != AlternativeImageSearch)
+            {
                 presenter.AlternativeSearchImage();
+                WordToSearch = AlternativeImageSearch;
+            }
 
             DisplayImage();
         }
@@ -203,6 +215,33 @@ namespace AnkiCardCreator
                 tTipLanguage.SetToolTip(pcbLang, "Перевод осуществляется на \"Русский\"");
                 LangEnglish = true;
             }
+        }
+
+        private void изменитьПапкуФайлаИмпортаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.SelectedPath = AnkiAppSettings.AnkiImportPath;
+
+            DialogResult res = fbd.ShowDialog();
+
+            if (res == System.Windows.Forms.DialogResult.OK)
+                AnkiAppSettings.SaveImportChanges(fbd.SelectedPath);
+        }
+
+        private void установитьКлючPixaBayApiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                    string.Format("Введите ваш PixaBay Api-ключ в открывшемся документе после чего закройте текстовый редактор:{0}{0}<PixaBayApiKey> Ваш ключ </PixaBayApiKey>", Environment.NewLine),
+                    "Изменение настроек PixaBay Api-key",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+
+            var pcs = Process.Start("settings.xml");
+
+            pcs.WaitForExit();
+
+            AnkiAppSettings.LoadSettings();
         }
 
 

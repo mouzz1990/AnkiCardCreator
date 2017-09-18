@@ -18,8 +18,7 @@ namespace AnkiCardCreator.Model
         public string ImageUrl { get; set; }
         string ImgPath { get; set; }
 
-        //string filePath = @"C:/AnkiImport/import.txt";
-        string filePath = string.Format("{0}/AnkiImport/import.txt", Environment.CurrentDirectory);
+        string filePath = string.Format("{0}/import.txt", AnkiAppSettings.AnkiImportPath);
         string imgPath = @"AnkiImage";
         public string PathToAnkiContent { get; set; }
 
@@ -33,8 +32,7 @@ namespace AnkiCardCreator.Model
             ImgPath = imgPath + "/" + Word + ".jpg";
             ImageName = Word + ".jpg";
 
-            //PathToAnkiContent = @"C:/Users/operator/AppData/Roaming/Anki2/Дима/collection.media";
-            PathToAnkiContent = LoadSettings();
+            PathToAnkiContent = AnkiAppSettings.AnkiContentPath;
          }
 
         public override string ToString()
@@ -74,17 +72,6 @@ namespace AnkiCardCreator.Model
             {
                 sw.WriteLine(this);
             }
-        }
-
-        string LoadSettings()
-        {
-            XDocument xDoc = XDocument.Load("settings.xml");
-            string path = xDoc.Element("SETTINGS").Element("AnkiContentPath").Value;
-
-            if (!Directory.Exists(path))
-                throw new DirectoryNotFoundException();
-
-            return path;
         }
     }
 }

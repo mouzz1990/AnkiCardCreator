@@ -6,17 +6,17 @@ using System.Net;
 
 namespace AnkiCardCreator.Model
 {
+
     public class ImageDownloader
     {
-        readonly string RequestHeader = "Ocp-Apim-Subscription-Key";
-        readonly string  ApiKey = "0eb6a27102c84aeca101b5ff3964bed3";
+        readonly string Key = AnkiAppSettings.PixaBayApiKey;
 
         string q;
         int count;
         int width;
 
-        ImgRootObject Root;
-        
+        PixabayRootObject Root;
+
         public Queue<string> ImagesQueue;
 
         string request;
@@ -24,32 +24,35 @@ namespace AnkiCardCreator.Model
         public ImageDownloader(string w)
         {
             q = w;
-            count = 50;
+            count = 100;
             width = 300;
 
-            request = string.Format("https://api.cognitive.microsoft.com/bing/v5.0/images/search?q={0}&count={1}&offset=0&mkt=en-us&safeSearch=Moderate&width={2}", q, count, width);
+            request = string.Format("https://pixabay.com/api/?key={0}&q={1}&per_page={2}",
+                Key,
+                q,
+                count
+                );
 
             Root = GetImgResponse(request);
-            
+
             ImagesQueue = new Queue<string>();
-            
-            foreach (Value val in Root.value)
+
+            foreach (var val in Root.hits)
             {
-                ImagesQueue.Enqueue(val.contentUrl);
+                ImagesQueue.Enqueue(val.webformatURL);
             }
         }
 
-        ImgRootObject GetImgResponse(string req)
+        private PixabayRootObject GetImgResponse(string req)
         {
 
             using (WebClient client = new WebClient())
             {
-                client.Headers.Add(RequestHeader, ApiKey);
-
                 string result = client.DownloadString(req);
 
-                return Newtonsoft.Json.JsonConvert.DeserializeObject<ImgRootObject>(result);
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<PixabayRootObject>(result);
             }
         }
+
     }
 }

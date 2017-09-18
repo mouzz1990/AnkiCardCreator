@@ -36,6 +36,7 @@
             this.panel1 = new MetroFramework.Controls.MetroPanel();
             this.metroContextMenu1 = new MetroFramework.Controls.MetroContextMenu(this.components);
             this.изменитьПапкуКонтентаAnkiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.изменитьПапкуФайлаИмпортаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAddAnkiCard = new MetroFramework.Controls.MetroButton();
             this.txbRefresh = new MetroFramework.Controls.MetroButton();
@@ -55,6 +56,7 @@
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.pcbLang = new System.Windows.Forms.PictureBox();
             this.tTipLanguage = new System.Windows.Forms.ToolTip(this.components);
+            this.установитьКлючPixaBayApiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.metroContextMenu1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -144,23 +146,33 @@
             // 
             this.metroContextMenu1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.изменитьПапкуКонтентаAnkiToolStripMenuItem,
+            this.изменитьПапкуФайлаИмпортаToolStripMenuItem,
+            this.установитьКлючPixaBayApiToolStripMenuItem,
             this.выходToolStripMenuItem});
             this.metroContextMenu1.Name = "metroContextMenu1";
-            this.metroContextMenu1.Size = new System.Drawing.Size(243, 48);
+            this.metroContextMenu1.Size = new System.Drawing.Size(253, 114);
             // 
             // изменитьПапкуКонтентаAnkiToolStripMenuItem
             // 
             this.изменитьПапкуКонтентаAnkiToolStripMenuItem.Image = global::AnkiCardCreator.Properties.Resources.programsChange;
             this.изменитьПапкуКонтентаAnkiToolStripMenuItem.Name = "изменитьПапкуКонтентаAnkiToolStripMenuItem";
-            this.изменитьПапкуКонтентаAnkiToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.изменитьПапкуКонтентаAnkiToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.изменитьПапкуКонтентаAnkiToolStripMenuItem.Text = "Изменить папку контента Anki";
             this.изменитьПапкуКонтентаAnkiToolStripMenuItem.Click += new System.EventHandler(this.изменитьПапкуКонтентаAnkiToolStripMenuItem_Click);
+            // 
+            // изменитьПапкуФайлаИмпортаToolStripMenuItem
+            // 
+            this.изменитьПапкуФайлаИмпортаToolStripMenuItem.Image = global::AnkiCardCreator.Properties.Resources.programsChange;
+            this.изменитьПапкуФайлаИмпортаToolStripMenuItem.Name = "изменитьПапкуФайлаИмпортаToolStripMenuItem";
+            this.изменитьПапкуФайлаИмпортаToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
+            this.изменитьПапкуФайлаИмпортаToolStripMenuItem.Text = "Изменить папку файла импорта";
+            this.изменитьПапкуФайлаИмпортаToolStripMenuItem.Click += new System.EventHandler(this.изменитьПапкуФайлаИмпортаToolStripMenuItem_Click);
             // 
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Image = global::AnkiCardCreator.Properties.Resources.power;
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.выходToolStripMenuItem.Text = "Выход";
             this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
@@ -426,6 +438,14 @@
             // 
             this.tTipLanguage.AutomaticDelay = 200;
             // 
+            // установитьКлючPixaBayApiToolStripMenuItem
+            // 
+            this.установитьКлючPixaBayApiToolStripMenuItem.Image = global::AnkiCardCreator.Properties.Resources.programsChange;
+            this.установитьКлючPixaBayApiToolStripMenuItem.Name = "установитьКлючPixaBayApiToolStripMenuItem";
+            this.установитьКлючPixaBayApiToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
+            this.установитьКлючPixaBayApiToolStripMenuItem.Text = "Установить ключ PixaBay Api";
+            this.установитьКлючPixaBayApiToolStripMenuItem.Click += new System.EventHandler(this.установитьКлючPixaBayApiToolStripMenuItem_Click);
+            // 
             // MetroFormView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -484,5 +504,7 @@
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
         private System.Windows.Forms.PictureBox pcbLang;
         private System.Windows.Forms.ToolTip tTipLanguage;
+        private System.Windows.Forms.ToolStripMenuItem изменитьПапкуФайлаИмпортаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem установитьКлючPixaBayApiToolStripMenuItem;
     }
 }

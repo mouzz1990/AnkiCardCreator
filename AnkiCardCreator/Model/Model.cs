@@ -33,7 +33,7 @@ namespace AnkiCardCreator.Model
             }
             catch (Exception)
             { 
-                YandexTranslateError(this, new ModelExceptiontEventArgs("Ошибка с запросом Yandex-переводчика."));
+                YandexTranslateError(this, new ModelExceptiontEventArgs("Ошибка с запросом переводчика."));
             }
             
             DownloadImages();
@@ -49,7 +49,7 @@ namespace AnkiCardCreator.Model
             }
             catch
             {
-                BingDownloaderError(this, new ModelExceptiontEventArgs("Ошибка с загрузкой изображений с Bing."));
+                BingDownloaderError(this, new ModelExceptiontEventArgs("Ошибка с загрузкой изображений."));
             }
         }
 
@@ -64,7 +64,7 @@ namespace AnkiCardCreator.Model
             }
             catch
             {
-                BingDownloaderError(this, new ModelExceptiontEventArgs("Ошибка с загрузкой изображений с Bing."));
+                BingDownloaderError(this, new ModelExceptiontEventArgs("Ошибка с загрузкой изображений."));
             }
         }
 
